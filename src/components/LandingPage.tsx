@@ -23,6 +23,16 @@ interface LandingPageProps {
   onEnterApp: () => void;
 }
 
+function RestaurantOSMark({ compact = false }: { compact?: boolean }) {
+  return (
+    <div className={`${compact ? "w-8 h-8" : "w-10 h-10"} relative grid place-items-center rounded-[35%_65%_55%_45%] bg-gradient-to-br from-blue-400 via-blue-600 to-indigo-700 text-white shadow-[0_10px_24px_rgba(37,99,235,0.35)] ring-1 ring-white/20 transition-transform duration-500 group-hover:rotate-6`}>
+      <span className="absolute inset-[18%] rounded-full border border-white/45" />
+      <Utensils className={`${compact ? "w-3.5 h-3.5" : "w-4 h-4"} relative z-10`} strokeWidth={2.4} />
+      <span className="absolute right-[18%] top-[18%] h-1.5 w-1.5 rounded-full bg-amber-300 shadow-[0_0_10px_#fcd34d]" />
+    </div>
+  );
+}
+
 export default function LandingPage({ onEnterApp }: LandingPageProps) {
   // ROI Calculator state
   const [tablesCount, setTablesCount] = useState<number>(15);
@@ -44,12 +54,9 @@ export default function LandingPage({ onEnterApp }: LandingPageProps) {
       {/* Upper Navigation and Branding Bar */}
       <header className="border-b border-white/10 bg-[#0a0a0a]/85 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white shadow-lg shadow-blue-500/20">
-              <Utensils className="w-4 h-4" />
-            </div>
-            <span className="font-semibold text-xl tracking-tight text-white">Restaurant<span className="text-blue-400">OS</span></span>
-            <span className="hidden lg:inline text-[10px] text-neutral-500 ml-1">Demo interactiva</span>
+          <div className="group flex items-center gap-3">
+            <RestaurantOSMark compact />
+            <div><span className="font-semibold text-xl tracking-tight text-white">Restaurant<span className="text-blue-400">OS</span></span><span className="hidden lg:block text-[9px] text-neutral-500 tracking-[0.18em] uppercase">Operations, served</span></div>
           </div>
 
           <nav className="hidden md:flex items-center gap-8 text-sm text-neutral-400 font-medium">
@@ -75,7 +82,9 @@ export default function LandingPage({ onEnterApp }: LandingPageProps) {
       <section id="producto" className="relative pt-24 pb-20 overflow-hidden bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-900/80 via-[#0a0a0a] to-[#0a0a0a]">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
         
-        <div className="max-w-5xl mx-auto px-6 text-center relative z-10">
+          <div className="max-w-5xl mx-auto px-6 text-center relative z-10">
+            <div className="absolute -top-8 left-[8%] hidden lg:flex items-center gap-2 -rotate-6 text-[10px] text-neutral-500"><span className="h-px w-8 bg-blue-400/60" />mesa 04 · en cocina</div>
+            <div className="absolute top-12 right-[5%] hidden lg:flex items-center gap-2 rotate-6 text-[10px] text-neutral-500">servicio en curso<span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" /></div>
           <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-full text-blue-400 text-xs font-semibold mb-6 uppercase tracking-wider">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
@@ -108,6 +117,10 @@ export default function LandingPage({ onEnterApp }: LandingPageProps) {
               <Calculator className="w-4 h-4 text-blue-400" />
               Calculadora ROI
             </a>
+          </div>
+
+          <div className="mt-9 inline-flex divide-x divide-white/10 rounded-full border border-white/10 bg-white/[0.025] px-2 py-1 text-[10px] text-neutral-400">
+            <span className="px-3">POS táctil</span><span className="px-3">Cocina en tiempo real</span><span className="px-3">Inventario por receta</span>
           </div>
 
           <div className="mt-16 relative rounded-3xl border border-white/10 bg-[#161616] shadow-2xl p-4 max-w-5xl mx-auto overflow-hidden">
@@ -312,9 +325,7 @@ export default function LandingPage({ onEnterApp }: LandingPageProps) {
       <footer className="bg-[#0a0a0a] border-t border-white/10 py-12 text-neutral-500 text-sm">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-3">
-            <div className="bg-blue-600 text-white w-7 h-7 rounded-lg flex items-center justify-center">
-              <Utensils className="w-3.5 h-3.5" />
-            </div>
+            <RestaurantOSMark compact />
             <span className="font-bold text-white">Restaurant<span className="text-blue-400">OS</span></span>
             <span className="text-[11px] text-neutral-600 block sm:inline ml-2">© 2026 RestaurantOS Inc. Todos los derechos reservados.</span>
           </div>
