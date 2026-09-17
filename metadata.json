@@ -1,0 +1,6 @@
+{
+  "name": "RestaurantOS",
+  "description": "Sistema Operativo Completo para Restaurantes, Cafeterías, Dark Kitchens y Cadenas de Comida de Latinoamérica",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_CLIENT_SIDE_RESTAURANT_DEMO"]
+}
