@@ -431,6 +431,7 @@ export default function App() {
   
   // Interactive UI states
   const [selectedTableForPos, setSelectedTableForPos] = useState<Table | null>(null);
+  const [selectedMenuCategory, setSelectedMenuCategory] = useState<string>("Todos");
   const [currentCart, setCurrentCart] = useState<OrderItem[]>([]);
   const [cartNotes, setCartNotes] = useState<string>("");
   const [cartCustomerDoc, setCartCustomerDoc] = useState<string>("");
@@ -696,12 +697,12 @@ export default function App() {
             <div>
               {/* Brand Header */}
               <div className="h-16 flex items-center gap-3 px-4 border-b border-white/10 bg-black/40">
-                <div onClick={() => setShowApp(false)} className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold text-lg text-white shadow-md shadow-blue-500/20 cursor-pointer">
-                  R
+                <div onClick={() => setShowApp(false)} title="Volver a la presentación" className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white shadow-md shadow-blue-500/20 cursor-pointer">
+                  <Utensils className="w-4 h-4" />
                 </div>
                 <div className="hidden sm:block">
                   <span className="font-bold text-white tracking-tight">Restaurant<span className="text-blue-400">OS</span></span>
-                  <p className="text-[10px] text-neutral-500 font-mono">ESTÁNDAR LATAM</p>
+                  <p className="text-[10px] text-neutral-500 font-mono">MODO DEMO</p>
                 </div>
               </div>
 
@@ -747,12 +748,12 @@ export default function App() {
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
                   <div className="w-8 h-8 rounded-full bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-xs">
-                    EC
+                    D
                   </div>
                   <div className="hidden sm:block">
-                    <p className="text-xs font-bold text-white">Joel Mansaba</p>
-                    <p className="text-[10px] text-emerald-400 flex items-center gap-1 font-mono">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> SRI Conectado
+                    <p className="text-xs font-bold text-white">Restaurante de muestra</p>
+                    <p className="text-[10px] text-neutral-500 flex items-center gap-1 font-mono">
+                      Sesión temporal
                     </p>
                   </div>
                 </div>
@@ -775,20 +776,20 @@ export default function App() {
                 <h1 className="text-lg font-bold text-white capitalize">{currentTab === 'sri' ? 'Facturación SRI' : currentTab}</h1>
                 <div className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs px-2.5 py-0.5 rounded-full font-mono flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                  Establecimiento Abierto: Turno Almuerzo
+                  Turno de muestra activo
                 </div>
               </div>
 
               {/* Status parameters */}
               <div className="flex items-center gap-4 text-xs">
                 <div className="hidden md:flex flex-col text-right font-mono text-neutral-400">
-                  <span>Caja Abierta: $150.00 base</span>
+                  <span>Fondo de caja: $150.00</span>
                   <span className="text-blue-400">Ventas Hoy: ${totalSalesVal.toFixed(2)}</span>
                 </div>
                 <div className="h-8 w-[1px] bg-white/10 hidden md:block"></div>
                 <div className="flex items-center gap-2">
-                  <span className="text-neutral-400">Sincronización Cloud:</span>
-                  <span className="text-emerald-400 font-bold uppercase tracking-widest bg-emerald-500/10 px-2 py-0.5 rounded font-mono">ONLINE</span>
+                  <span className="text-neutral-400">Estado:</span>
+                  <span className="text-blue-300 font-bold uppercase tracking-widest bg-blue-500/10 px-2 py-0.5 rounded font-mono">DEMO LOCAL</span>
                 </div>
               </div>
             </header>
@@ -1056,7 +1057,8 @@ export default function App() {
                         {["Todos", "Pizzas", "Carnes", "Café y Postres", "Bebidas"].map(cat => (
                           <button
                             key={cat}
-                            className="text-xs px-3.5 py-2 bg-[#161616] border border-white/10 hover:border-white/20 hover:bg-white/5 text-neutral-300 font-bold rounded-lg shrink-0"
+                            onClick={() => setSelectedMenuCategory(cat)}
+                            className={`text-xs px-3.5 py-2 border font-bold rounded-lg shrink-0 transition-colors ${selectedMenuCategory === cat ? "bg-blue-600 border-blue-500 text-white" : "bg-[#161616] border-white/10 hover:border-white/20 hover:bg-white/5 text-neutral-300"}`}
                           >
                             {cat}
                           </button>
@@ -1082,7 +1084,7 @@ export default function App() {
 
                     {/* Food Items list Grid */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                      {menuItems.map(item => (
+                      {menuItems.filter(item => selectedMenuCategory === "Todos" || item.category === selectedMenuCategory).map(item => (
                         <div 
                           key={item.id} 
                           className="bg-[#161616] border border-white/10 rounded-2xl p-4 flex flex-col justify-between hover:border-blue-500/30 transition-all cursor-pointer group"
@@ -1103,7 +1105,7 @@ export default function App() {
 
                           <div className="mt-6 flex justify-between items-center border-t border-white/5 pt-3">
                             <span className="text-base font-extrabold text-white font-mono">${item.price.toFixed(2)}</span>
-                            <button className="p-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white transition-all">
+                            <button onClick={(event) => { event.stopPropagation(); handleAddToCart(item); }} aria-label={`Agregar ${item.name}`} className="p-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white transition-all">
                               <Plus className="w-4 h-4" />
                             </button>
                           </div>
