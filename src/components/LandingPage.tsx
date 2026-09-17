@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { 
   Utensils,
+  ShoppingCart,
+  Layers,
+  ChefHat,
+  Users,
   ChevronRight, 
   TrendingUp, 
   Calculator, 
@@ -13,6 +17,7 @@ import {
   Sparkles, 
   Globe
 } from "lucide-react";
+import restaurantServiceImage from "../assets/restaurant-service.png";
 
 interface LandingPageProps {
   onEnterApp: () => void;
@@ -105,83 +110,15 @@ export default function LandingPage({ onEnterApp }: LandingPageProps) {
             </a>
           </div>
 
-          {/* Elegant Dark Dashboard Interactive Mockup */}
-          <div className="mt-16 relative rounded-3xl border border-white/10 bg-[#161616] shadow-2xl p-4 max-w-4xl mx-auto overflow-hidden">
-            <div className="flex h-full flex-col md:flex-row gap-6">
-              
-              {/* Mockup Sidebar */}
-              <div className="hidden md:flex w-14 flex-col gap-6 items-center pt-4 border-r border-white/5 pr-4 shrink-0">
-                <div className="w-8 h-8 bg-blue-500/20 text-blue-500 rounded-lg flex items-center justify-center font-bold text-xs">●</div>
-                <div className="w-8 h-8 text-neutral-600 bg-neutral-900 rounded-lg flex items-center justify-center text-xs">■</div>
-                <div className="w-8 h-8 text-neutral-600 bg-neutral-900 rounded-lg flex items-center justify-center text-xs">▲</div>
-                <div className="w-8 h-8 text-neutral-600 bg-neutral-900 rounded-lg flex items-center justify-center text-xs">◆</div>
+          <div className="mt-16 relative rounded-3xl border border-white/10 bg-[#161616] shadow-2xl p-4 max-w-5xl mx-auto overflow-hidden">
+            <div className="flex flex-col md:flex-row gap-5">
+              <div className="hidden md:flex w-40 flex-col gap-2 pt-2 border-r border-white/5 pr-4 shrink-0 text-[10px] text-neutral-500">
+                <div className="flex items-center gap-2 text-white font-bold px-2 mb-3"><Utensils className="w-3.5 h-3.5 text-blue-400" /> RestaurantOS</div>
+                <div className="flex items-center gap-2 px-2 py-2"><TrendingUp className="w-3.5 h-3.5" /> Dashboard</div><div className="flex items-center gap-2 px-2 py-2 rounded-lg bg-white/10 text-white"><ShoppingCart className="w-3.5 h-3.5 text-blue-400" /> POS & Comandas</div><div className="flex items-center gap-2 px-2 py-2"><Layers className="w-3.5 h-3.5" /> Mapa de mesas</div><div className="flex items-center gap-2 px-2 py-2"><ChefHat className="w-3.5 h-3.5" /> Cocina</div><div className="flex items-center gap-2 px-2 py-2"><Users className="w-3.5 h-3.5" /> Clientes</div>
               </div>
-
-              {/* Main Mockup Panel */}
-              <div className="flex-1 text-left">
-                <div className="flex justify-between items-center mb-6 pt-2">
-                  <h3 className="text-base font-bold text-white">Resumen del turno</h3>
-                  <div className="flex gap-2">
-                    <span className="bg-white/5 text-neutral-400 border border-white/10 px-2.5 py-0.5 rounded text-[10px]">Vista de muestra</span>
-                  </div>
-                </div>
-
-                {/* Simulated Metrics Card list */}
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                  <div className="bg-white/5 p-4 rounded-xl border border-white/5">
-                    <span className="text-neutral-400 text-[9px] uppercase font-bold tracking-widest block mb-1">Ventas del Día</span>
-                    <span className="text-base font-extrabold text-white font-mono">$12,450.00</span>
-                    <span className="text-emerald-400 text-[9px] block mt-1">+14.2% vs ayer</span>
-                  </div>
-                  <div className="bg-white/5 p-4 rounded-xl border border-white/5">
-                    <span className="text-neutral-400 text-[9px] uppercase font-bold tracking-widest block mb-1">Ticket Promedio</span>
-                    <span className="text-base font-extrabold text-white font-mono">$34.20</span>
-                  </div>
-                  <div className="bg-white/5 p-4 rounded-xl border border-white/5">
-                    <span className="text-neutral-400 text-[9px] uppercase font-bold tracking-widest block mb-1">Mesas Ocupadas</span>
-                    <span className="text-base font-extrabold text-white font-mono">18 / 24</span>
-                    <span className="text-blue-400 text-[9px] block mt-1">Ocupación: 75%</span>
-                  </div>
-                  <div className="bg-white/5 p-4 rounded-xl border border-white/5">
-                    <span className="text-neutral-400 text-[9px] uppercase font-bold tracking-widest block mb-1">Alertas Almacén</span>
-                    <span className="text-base font-extrabold text-orange-400 font-mono">3 crít</span>
-                  </div>
-                </div>
-
-                {/* Mini interactive Salon preview and recent orders simulated */}
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-                  <div className="md:col-span-8 bg-white/[0.02] border border-dashed border-white/10 rounded-xl p-6 flex flex-col justify-center items-center text-center">
-                    <span className="text-xs font-bold text-neutral-300">Mapa de Salón Interactivo Digitalizado</span>
-                    <p className="text-[10px] text-neutral-500 mt-1 max-w-sm">Ubica y gestiona el flujo de comensales. Divide facturas y administra tiempos de rotación.</p>
-                    <button 
-                      onClick={onEnterApp}
-                      className="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-[10px] rounded-lg uppercase tracking-wider"
-                    >
-                      Mostrar Demo en Vivo
-                    </button>
-                  </div>
-
-                  <div className="md:col-span-4 bg-[#0d0d0d] border border-white/5 rounded-xl p-3.5 space-y-2">
-                    <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider font-mono">Transacciones Recientes</span>
-                    <div className="space-y-1.5 text-[11px] font-mono">
-                      <div className="flex justify-between py-1 border-b border-white/5 text-neutral-300">
-                        <span>Mesa 04 - Lomo Fino</span>
-                        <span className="text-blue-400">Preparando</span>
-                      </div>
-                      <div className="flex justify-between py-1 border-b border-white/5 text-neutral-300">
-                        <span>Mesa 12 - Pizza Margh</span>
-                        <span className="text-emerald-400">Listo</span>
-                      </div>
-                      <div className="flex justify-between py-1 text-neutral-300">
-                        <span>UberEats #4421</span>
-                        <span className="text-amber-400">Pendiente</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
+              <div className="flex-1 text-left"><div className="flex justify-between items-center mb-4 pt-2"><h3 className="text-base font-bold text-white">POS & Comandas</h3><span className="bg-white/5 text-neutral-400 border border-white/10 px-2.5 py-0.5 rounded text-[10px]">Vista previa</span></div>
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-4"><div className="md:col-span-8 bg-white/[0.02] border border-white/10 rounded-xl p-4"><div className="flex gap-2 mb-4 text-[9px] font-bold"><span className="bg-blue-600 px-2 py-1 rounded">Pizzas</span><span className="bg-white/5 px-2 py-1 rounded text-neutral-400">Carnes</span><span className="bg-white/5 px-2 py-1 rounded text-neutral-400">Bebidas</span></div><div className="bg-[#1a1a1a] border border-white/10 rounded-xl p-3 max-w-[180px]"><span className="text-2xl">🍕</span><p className="text-xs font-bold text-white mt-3">Pizza Margherita</p><p className="text-[9px] text-neutral-500 mt-1">Mozzarella, tomate y albahaca</p><div className="flex justify-between mt-3 text-xs"><span className="font-bold">$13.50</span><span className="bg-blue-600 px-2 rounded">+</span></div></div><button onClick={onEnterApp} className="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-[10px] rounded-lg">Probar POS real</button></div><div className="md:col-span-4 bg-[#0d0d0d] border border-white/10 rounded-xl p-3.5 space-y-3"><span className="text-[10px] font-bold text-white">Comanda activa</span><div className="flex justify-between text-[10px] text-neutral-400"><span>Pizza Margherita</span><span>$13.50</span></div><div className="border-t border-white/10 pt-3 flex justify-between text-xs font-bold"><span>Total</span><span>$15.53</span></div><div className="bg-emerald-500 text-black text-center py-1.5 rounded text-[9px] font-bold">COBRAR</div></div></div>
               </div>
-
             </div>
           </div>
         </div>
@@ -190,43 +127,19 @@ export default function LandingPage({ onEnterApp }: LandingPageProps) {
       {/* Real Problems Section */}
       <section id="modulos" className="py-24 border-t border-white/10 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-bold text-blue-400 uppercase tracking-widest block mb-2">Módulos incluidos en la demo</span>
-            <p className="text-3xl sm:text-4xl font-extrabold text-white">Un flujo continuo, desde la mesa hasta cocina.</p>
-            <p className="text-neutral-400 mt-4">Cada área del producto se puede recorrer y probar con datos temporales, sin crear una cuenta.</p>
+          <div className="max-w-3xl mb-12">
+            <span className="text-xs font-bold text-blue-400 uppercase tracking-widest block mb-2">El trabajo detrás del servicio</span>
+            <p className="text-3xl sm:text-4xl font-extrabold text-white">El salón, caja y cocina tienen que hablar el mismo idioma.</p>
+            <p className="text-neutral-400 mt-4">RestaurantOS conecta los momentos que suelen quedar repartidos entre papel, chat y varias pantallas.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="border border-white/10 bg-[#161616]/40 p-6 rounded-2xl hover:border-white/20 transition-all group">
-              <div className="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center text-red-400 mb-5 group-hover:scale-110 transition-all">
-                <ShieldAlert className="w-6 h-6" />
-              </div>
-              <h3 className="text-lg font-bold text-white mb-2">Inventario por receta</h3>
-              <p className="text-xs text-neutral-400 leading-relaxed">Descuenta ingredientes al registrar una orden y muestra alertas de reposición dentro de la sesión.</p>
-            </div>
-
-            <div className="border border-white/10 bg-[#161616]/40 p-6 rounded-2xl hover:border-white/20 transition-all group">
-              <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-400 mb-5 group-hover:scale-110 transition-all">
-                <Flame className="w-6 h-6" />
-              </div>
-              <h3 className="text-lg font-bold text-white mb-2">Comandas y cocina</h3>
-              <p className="text-xs text-neutral-400 leading-relaxed">Envía pedidos desde el POS al KDS y actualiza su estado hasta quedar listos para entregar.</p>
-            </div>
-
-            <div className="border border-white/10 bg-[#161616]/40 p-6 rounded-2xl hover:border-white/20 transition-all group">
-              <div className="w-12 h-12 rounded-xl bg-yellow-500/10 flex items-center justify-center text-yellow-400 mb-5 group-hover:scale-110 transition-all">
-                <TrendingUp className="w-6 h-6" />
-              </div>
-              <h3 className="text-lg font-bold text-white mb-2">Salón y clientes</h3>
-              <p className="text-xs text-neutral-400 leading-relaxed">Consulta el mapa de mesas, reservas y el historial de clientes desde el mismo panel.</p>
-            </div>
-
-            <div className="border border-white/10 bg-[#161616]/40 p-6 rounded-2xl hover:border-white/20 transition-all group">
-              <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 mb-5 group-hover:scale-110 transition-all">
-                <Percent className="w-6 h-6" />
-              </div>
-              <h3 className="text-lg font-bold text-white mb-2">Cobro y comprobantes</h3>
-              <p className="text-xs text-neutral-400 leading-relaxed">Simula métodos de pago y comprobantes para recorrer un cierre de venta de punta a punta.</p>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            <figure className="lg:col-span-5 relative min-h-96 overflow-hidden rounded-3xl border border-white/10 bg-neutral-900"><img src={restaurantServiceImage} alt="Equipo de restaurante coordinando el servicio" className="absolute inset-0 h-full w-full object-cover" /><div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/90 to-transparent"><p className="text-sm font-bold text-white">Una orden no termina cuando se toma.</p><p className="text-xs text-neutral-300 mt-1">Sigue por cocina, inventario, mesa y cobro.</p></div></figure>
+            <div className="lg:col-span-7 divide-y divide-white/10 border-y border-white/10">
+              <div className="grid grid-cols-[2rem_1fr] gap-5 py-6"><span className="text-blue-400 font-mono">01</span><div><h3 className="text-lg font-bold text-white">Tomar la orden sin perder contexto</h3><p className="text-sm text-neutral-400 mt-2">El POS conserva mesa, cliente, modificadores y notas en la misma comanda.</p></div></div>
+              <div className="grid grid-cols-[2rem_1fr] gap-5 py-6"><span className="text-emerald-400 font-mono">02</span><div><h3 className="text-lg font-bold text-white">Preparar con una cola clara</h3><p className="text-sm text-neutral-400 mt-2">Cocina y barra ven lo que les corresponde y pueden actualizar el estado del pedido.</p></div></div>
+              <div className="grid grid-cols-[2rem_1fr] gap-5 py-6"><span className="text-amber-400 font-mono">03</span><div><h3 className="text-lg font-bold text-white">Cerrar y aprender del turno</h3><p className="text-sm text-neutral-400 mt-2">Al cobrar, la demo actualiza ventas e inventario para que el tablero tenga una historia coherente.</p></div></div>
+              <button onClick={onEnterApp} className="mt-6 text-sm font-bold text-blue-400 hover:text-blue-300 inline-flex items-center gap-2">Recorrer el flujo en la demo <ChevronRight className="w-4 h-4" /></button>
             </div>
           </div>
         </div>
